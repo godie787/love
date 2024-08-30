@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screens/intro/intro_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'screens/home_screen.dart';
+import 'screens/notes/notes_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,13 +10,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Couple App',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
+    return BlocProvider(
+      create: (_) => NotesBloc(),
+      child: MaterialApp(
+        title: 'Nuestra App',
+        theme: ThemeData(
+          primarySwatch: Colors.pink,
+        ),
+        home: HomeScreen(),
       ),
-      home: IntroScreen(),
     );
   }
 }
